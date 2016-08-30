@@ -27,7 +27,7 @@ class NewPost(webapp2.RequestHandler):
 
     def get(self):
         t = jinja_env.get_template("newpost.html")
-        response = t.render(title ="", blog="")
+        response = t.render(title ="", err_title="", blog="", err_blog="")
         self.response.write(response)
 
     def post(self):
@@ -35,12 +35,16 @@ class NewPost(webapp2.RequestHandler):
         blog = self.request.get("blog")
         title_bool = True
         blog_bool = True
+        err_title = ""
+        err_blog = ""
 
         if title == "":
             title_bool = False
+            err_title = "Need value for subject!"
 
         if blog == "":
             blog_bool = False
+            err_blog = "Need value for blog!"
 
         #if both values are not empty redirect to mainblog page
         if title_bool and blog_bool:
@@ -49,7 +53,7 @@ class NewPost(webapp2.RequestHandler):
             self.response.write(response)
         else:
             t = jinja_env.get_template("newpost.html")
-            response = t.render(title=title, blog=blog)
+            response = t.render(title=title, err_title=err_title, blog=blog, err_blog=err_blog)
             self.response.write(response)
 
 app = webapp2.WSGIApplication([
