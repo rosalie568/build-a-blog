@@ -49,7 +49,7 @@ class NewPost(webapp2.RequestHandler):
             self.response.write(response)
         else:
             t = jinja_env.get_template("newpost.html")
-            response = t.render(title, blog)
+            response = t.render(title=title, blog=blog)
             self.response.write(response)
 
 app = webapp2.WSGIApplication([

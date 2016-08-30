@@ -2,17 +2,19 @@
 
 {% block content %}
 
-    <h1> New Post! </h1>
+    <h1> <center> New Post! </center> </h1>
 
     <form method="post">
 
         <label> Subject: </label> <br>
-        <input type="text" value="{{ title }}" name="title" />
+        <input type="text" value="{{title}}" name="title" />
+        <p class="error"></p>
 
         <br> <br>
 
         <label> Blog: </label> <br>
         <textarea name="blog">{{blog}}</textarea>
+        <p class="error"></p>
 
         <br> <br>
 
