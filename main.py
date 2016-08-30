@@ -26,12 +26,31 @@ class BlogPage(webapp2.RequestHandler):
 class NewPost(webapp2.RequestHandler):
 
     def get(self):
-        title = self.request.get("title")
-        blog = self.request.get("blog")
-
         t = jinja_env.get_template("newpost.html")
         response = t.render(title ="", blog="")
         self.response.write(response)
+
+    def post(self):
+        title = self.request.get("title")
+        blog = self.request.get("blog")
+        title_bool = True
+        blog_bool = True
+
+        if title == "":
+            title_bool = False
+
+        if blog == "":
+            blog_bool = False
+
+        #if both values are not empty redirect to mainblog page
+        if title_bool and blog_bool:
+            t = jinja_env.get_template("mainblog.html")
+            response = t.render()
+            self.response.write(response)
+        else:
+            t = jinja_env.get_template("newpost.html")
+            response = t.render(title, blog)
+            self.response.write(response)
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
