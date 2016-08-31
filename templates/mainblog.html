@@ -2,8 +2,10 @@
 
 {% block content %}
 
-    <h1>
-        Blogs!
-    </h1>
+    <h1>Blogs!</h1>
+    {% for x in posts %}
 
+        <a href="/blog/{{ id }}"> {{ x }} Post! </a>
+
+    {% endfor %}
 {% endblock %}
