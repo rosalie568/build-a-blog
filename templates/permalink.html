@@ -2,7 +2,25 @@
 
 {% block content %}
 
-    <h2>{{post.title}} </h2>
-    <p>{{post.blog}} </p>
+    <br> <br>
+    <form>
+        <div class="post">
+            <div class="post-heading">
+                <div class="post-title">
+                    {{post.title}}
+                </div>
 
+                <br> <br>
+
+                <div class="post-date">
+                    {{post.created.strftime("%b %d, %Y")}}
+                </div>
+            </div>
+
+            <div class="post-content">
+                {{ post.blog }}
+            </div>
+        </div>
+    </form>
+    
 {% endblock %}

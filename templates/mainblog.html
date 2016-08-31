@@ -4,11 +4,31 @@
 
     <br>
 
-    <h1>Blogs!</h1>
+    <h1> <center> Blogs! </center> </h1>
+    <br>
+
     {% for x in post %}
 
-        <h2><a href="/blog/{{x.key().id()}}">{{x.title}} </a></h2>
-        <p>{{x.blog}} </p>
+        <form>
+            <div class="post">
+                <div class="post-heading">
+                    <div class="post-title">
+                        <a href="/blog/{{x.key().id()}}">{{ x.title }} </a>
+                    </div>
+
+                    <br> <br>
+
+                    <div class="post-date">
+                        {{ x.created.strftime("%b %d, %Y") }}
+                    </div>
+                </div>
+
+                <div class="post-content">
+                    {{ x.blog }}
+                </div>
+            </div>
+        </form>
+        <br>
 
     {% endfor %}
 {% endblock %}
