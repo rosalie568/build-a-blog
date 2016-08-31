@@ -25,14 +25,16 @@ class MainHandler(webapp2.RequestHandler):
 # Shows permalink page
 class Permalink(webapp2.RequestHandler):
     def get(self, post_id):
-        key = db.Key.from_path('Posts', post_id)
+        key = db.Key.from_path('Posts', int(post_id) )
         post = db.get(key)
 
         if not post:
             self.error(404)
             return
 
-        self.render("permalink.html", post = post)
+        t = jinja_env.get_template("permalink.html")
+        response = t.render( post=post )
+        self.response.write(response)
 
 # Shows most recent 5 posts on BLOG
 class BlogPage(webapp2.RequestHandler):
