@@ -3,9 +3,10 @@
 {% block content %}
 
     <h1>Blogs!</h1>
-    {% for x in posts %}
+    {% for x in post %}
 
-        <a href="/blog/{{ id }}"> {{ x }} Post! </a>
+        <h2><a href="/blog/{{x.id}}">{{x.title}} </a></h2>
+        <p>{{x.blog}} </p>
 
     {% endfor %}
 {% endblock %}
