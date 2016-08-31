@@ -22,6 +22,18 @@ class MainHandler(webapp2.RequestHandler):
         response = t.render()
         self.response.write(response)
 
+# Shows permalink page
+class Permalink(webapp2.RequestHandler):
+    def get(self, post_id):
+        key = db.Key.from_path('Posts', post_id)
+        post = db.get(key)
+
+        if not post:
+            self.error(404)
+            return
+
+        self.render("permalink.html", post = post)
+
 # Shows most recent 5 posts on BLOG
 class BlogPage(webapp2.RequestHandler):
     def get(self):
@@ -55,9 +67,9 @@ class NewPost(webapp2.RequestHandler):
 
         #if both values are not empty redirect to mainblog page & store values in database
         if title_bool and blog_bool:
-            #post = Posts(title=title, blog=blog)
-            #post.put()
-            self.redirect("/blog")
+            post = Posts(title=title, blog=blog)
+            post.put()
+            self.redirect('/blog/%s' % str(post.key().id()))
         else:
             t = jinja_env.get_template("newpost.html")
             response = t.render(title=title, err_title=err_title, blog=blog, err_blog=err_blog)
@@ -65,6 +77,7 @@ class NewPost(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([
     ('/', MainHandler),
-    ('/blog', BlogPage),
-    ('/blog/newpost', NewPost)
+    ('/blog/?', BlogPage),
+    ('/blog/newpost', NewPost),
+    ('/blog/([0-9]+)', Permalink)
 ], debug=True)
