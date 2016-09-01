@@ -9,7 +9,7 @@
 
     {% for x in post %}
 
-        <form>
+        <div id="blog">
             <div class="post">
                 <div class="post-heading">
                     <div class="post-title">
@@ -19,7 +19,7 @@
                     <br> <br>
 
                     <div class="post-date">
-                        {{ x.created.strftime("%b %d, %Y") }}
+                        {{ x.created.strftime("%b %d, %Y    %I:%M %p") }}
                     </div>
                 </div>
 
@@ -27,7 +27,7 @@
                     {{ x.blog }}
                 </div>
             </div>
-        </form>
+        </div>
         <br>
 
     {% endfor %}

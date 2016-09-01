@@ -3,7 +3,7 @@
 {% block content %}
 
     <br> <br>
-    <form>
+    <div id="blog">
         <div class="post">
             <div class="post-heading">
                 <div class="post-title">
@@ -13,7 +13,7 @@
                 <br> <br>
 
                 <div class="post-date">
-                    {{post.created.strftime("%b %d, %Y")}}
+                    {{post.created.strftime("%b %d, %Y      %I:%M %p")}}
                 </div>
             </div>
 
@@ -21,6 +21,6 @@
                 {{ post.blog }}
             </div>
         </div>
-    </form>
-    
+    </div>
+
 {% endblock %}
