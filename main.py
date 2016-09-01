@@ -59,11 +59,11 @@ class NewPost(webapp2.RequestHandler):
         err_title = ""
         err_blog = ""
 
-        if title == "":
+        if not title or title.strip() == "":
             title_bool = False
             err_title = "Need value for subject!"
 
-        if blog == "":
+        if not blog or blog.strip() == "":
             blog_bool = False
             err_blog = "Need value for blog!"
 
